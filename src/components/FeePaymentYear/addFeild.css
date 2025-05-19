@@ -1,0 +1,113 @@
+.add-table-section {
+    overflow-x: auto;
+    /* background: #eceaea; */
+    /* padding: 1rem; */
+    /* border-radius: 16px; */
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06); */
+    margin-top: 20px;
+    /* width: 1154px; */
+    /* height: 548px; */
+    border-radius: 12px;
+    /* border-width: 1px;*/
+  
+  }
+  /* .add-table {
+    /* width: 100%; *
+    border-collapse: separate;
+    /* border-spacing: 0; *
+    min-width: 1200px;
+    border-right: 1px solid #E6E4F0;
+    /* background-color: rgb(224, 222, 222); *
+    border-radius: 15px;
+   
+  } */
+  .add-table th{
+    color: #111827;
+  }
+
+.save-btn{
+    background-color: #1341a3;
+    width: 62px;
+    height: 26px;
+    border-radius: 80px;
+    color: white;
+  /* text-decoration: none; */
+    border: none;
+  }
+  input[type="text" i]{
+    /* padding: 8px 12px; */
+    font-size: 14px;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 4px; */
+    outline: none;
+    
+    box-sizing: border-box;
+    border: none;
+}
+input[type="text" i]::placeholder{
+    color:black;
+    /* font-size: 12px; */
+} 
+input[type="text"]::placeholder{
+  color: #0C0C0C;
+} 
+.add-table{
+    /* width: 876px; */
+    height: 107px;
+    border-radius: 12px;
+    border-collapse: separate;
+    background-color: rgb(224, 222, 222);
+    
+}
+.add-table th,
+.add-table td {
+  padding: 14px 16px;
+  text-align: left;
+  /* border-bottom: 1px solid #e5e7eb; */
+  background-color: #ffffff;
+  font-family: 'Inter',sans-serif;
+font-weight: 700;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+
+
+}
+.add-table td{
+  font-family: 'Inter',sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  white-space: nowrap;
+  /* width: 211px;
+height: 38px; */
+/* border-right-width: 1px; */
+gap: 10px;
+/* padding-top: 6px;
+padding-right: 80px;
+padding-bottom: 6px;
+padding-left: 18px; */
+
+  
+}
+
+.add-table th {
+  /* background-color: #f9fafb; */
+  font-weight: 600;
+  font-size: 14px;
+  color: #0C0C0C;
+
+  /* width: 1154px; */
+  /* height: 69px; */
+  /* width: 177;
+  height: 69; */
+  /* border-right-width: 1px; */
+  gap: 10px;
+  /* padding-top: 25px;
+  padding-right: 78px;
+  padding-bottom: 25px;
+  padding-left: 18px; */
+  
+
+}

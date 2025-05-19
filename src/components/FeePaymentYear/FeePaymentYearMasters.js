@@ -1,0 +1,181 @@
+import React, { useState, useEffect, useRef } from "react";
+import "./feePayment.css";
+import FeePaymentHeader from "./Header";
+import FeePaymentTable from "./feePayment";
+import AddNewFeeField from "./AddFeildForm";
+import Footer from "../Footer/Footer";
+
+const FeePaymentYearMasters = () => {
+  const [tableData, setTableData] = useState(
+    Array.from({ length: 15 }, (_, i) => ({
+      id: i + 1,
+      academicId: "2022-2024",
+      joinYear: "Value",
+      academicYear: "Value",
+      classId: "Value",
+      receiptStatus: "Value",
+      status: "Value",
+      fyStartOn: "2022-2024",
+      fyEndOn: "Value",
+      startOn: "Value",
+      endOn: "Value",
+    }))
+  );
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isAddNewField, setIsAddNewField] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 360);
+  const tableWrapperRef = useRef(null);
+  const headerRef = useRef(null);
+  const lastScrollTop = useRef(0);
+
+  const [newRow, setNewRow] = useState({
+    academicId: "",
+    joinYear: "",
+    academicYear: "",
+    classId: "",
+    receiptStatus: "",
+    status: "",
+    fyStartOn: "",
+    fyEndOn: "",
+    startOn: "",
+    endOn: "",
+  });
+
+  const rowsPerPage = 15;
+  const totalPages = Math.ceil(tableData.length / rowsPerPage);
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = tableData.slice(indexOfFirstRow, indexOfLastRow);
+
+  const handleAddNewField = () => {
+    setIsAddNewField(true);
+    setNewRow({
+      academicId: "",
+      joinYear: "",
+      academicYear: "",
+      classId: "",
+      receiptStatus: "",
+      status: "",
+      fyStartOn: "",
+      fyEndOn: "",
+      startOn: "",
+      endOn: "",
+    });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewRow((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSave = () => {
+    const newEntry = {
+      id: tableData.length + 1,
+      ...newRow,
+    };
+    setTableData([newEntry, ...tableData]);
+    setIsAddNewField(false);
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+useEffect(() => {
+  const tableWrapper = tableWrapperRef.current;
+  if (!tableWrapper) return;
+
+  let lastScrollTop = 0;
+  let ticking = false;
+
+  const handleScroll = () => {
+    const scrollTop = tableWrapper.scrollTop;
+
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollDown = scrollTop > lastScrollTop + 5;
+        const scrollUp = scrollTop < lastScrollTop - 5;
+
+        if (scrollDown && !isFooterVisible) {
+          setIsFooterVisible(true);
+        } else if (scrollUp && isFooterVisible) {
+          setIsFooterVisible(false);
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  };
+
+  tableWrapper.addEventListener("scroll", handleScroll);
+
+  return () => {
+    tableWrapper.removeEventListener("scroll", handleScroll);
+  };
+}, [isFooterVisible]);
+
+
+  return (
+    <>
+      <div className="fee-payment-wrapper" ref={tableWrapperRef}>
+        <div ref={headerRef} className="header-container">
+          <FeePaymentHeader
+            isAddNewField={isAddNewField}
+            onAddNewField={handleAddNewField}
+          />
+        </div>
+
+        {isAddNewField ? (
+          <AddNewFeeField
+            newRow={newRow}
+            onChange={handleChange}
+            onSave={handleSave}
+          />
+        ) : (
+          <>
+            <FeePaymentTable data={currentRows} />
+            <div className="footer-section">
+              <p className="pro-tip">
+                ProTip! Check twice before editing the masters data
+              </p>
+              <div className="pagination">
+                <span>
+                  {currentPage}-{totalPages} of {totalPages}
+                </span>
+                <button
+                  onClick={handlePrev}
+                  className="prev-btn"
+                  disabled={currentPage === 1}
+                >
+                  Prev
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="next-btn"
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+   <Footer isVisible={isFooterVisible} />
+
+      </div>
+
+      
+    </>
+  );
+};
+
+export default FeePaymentYearMasters;

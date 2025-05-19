@@ -1,0 +1,111 @@
+.Side-Bar {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      padding-right: 9px;
+      background: linear-gradient(128deg, white 0%, white 76%, #ffc0cb 123%);
+      /*background-image: url(http://localhost:3000/static/media/Navbar%20BG.0f1240d….png);*/
+    
+}
+.Side-Top {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-family: "Inter",sans-serif;
+    color: black;
+    /* margin-bottom: 20px; */
+    padding-top: 17px;
+    padding-left: 20px;
+}
+.Side-Top p{
+  color: rgba(89, 94, 108, 1);
+  /* width: 102px; */
+  /* height: 18px; */
+  font-family: Segoe UI;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  padding-left: 8px;
+
+}
+.Side-Top img{
+  width: 5px;
+  height: 10px;
+  padding-top: 1px;
+}
+
+.List {
+  list-style: none;
+  padding: 0px 0px 0px 17px;
+  margin: 0;
+  gap: 4px;
+
+}
+
+.List li {
+  /* margin-bottom: 8px; */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  /* width: 223px;*/
+  /* height: 40px;  */
+  /* gap: 7px; */
+  border-radius: 8px; 
+ 
+}
+
+.list-item {
+      display: flex;
+      align-items: center;
+      padding: 0px 10px;
+      gap: 15px;
+      border-radius: 8px;
+      white-space: nowrap;
+      text-decoration: none;
+      color: black;
+}
+.list-item p{
+font-family: Segoe UI;
+font-weight: 400;
+font-size: 14px;
+letter-spacing: 0%;
+vertical-align: middle;
+}
+.list-item .item-icon{
+  width: 20px;
+  height: 20px;
+
+}
+
+.list-item:hover,.list-item:active {
+  background-color: #3563e4;
+  color: white;
+  /* margin-bottom: 8px; */
+  /* padding: 0px 7px 0px 0px; */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    height: 40px;
+    gap: 7px;
+    border-radius: 8px;
+    /* padding-left: 16px; */
+
+}
+.list-item.active {
+  background-color: #3563e4;
+  color: white;
+  height: 40px;
+  padding-left: 16px;
+}
+
+/* To fix text color inside when active */
+.list-item.active p {
+  color: white;
+}
+@media(max-width:360px){
+  .Side-Bar{
+    display: none;
+  }
+}
