@@ -32,7 +32,7 @@ display: none;
   }
 
   .footer-menu-section.visible {
-    transform: translateY(0);
+    transform: translateY(0%);
     opacity: 1;
     visibility: visible;
   }

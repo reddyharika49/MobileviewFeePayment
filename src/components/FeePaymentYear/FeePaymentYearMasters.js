@@ -91,37 +91,27 @@ useEffect(() => {
   const tableWrapper = tableWrapperRef.current;
   if (!tableWrapper) return;
 
-  let lastScrollTop = 0;
-  let ticking = false;
+ lastScrollTop.current = tableWrapper.scrollTop;
 
   const handleScroll = () => {
     const scrollTop = tableWrapper.scrollTop;
 
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const scrollDown = scrollTop > lastScrollTop + 5;
-        const scrollUp = scrollTop < lastScrollTop - 5;
-
-        if (scrollDown && !isFooterVisible) {
-          setIsFooterVisible(true);
-        } else if (scrollUp && isFooterVisible) {
-          setIsFooterVisible(false);
-        }
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        ticking = false;
-      });
-
-      ticking = true;
+    if (scrollTop < lastScrollTop.current - 10) {
+      // Scrolling up → hide footer
+      setIsFooterVisible(false);
+    } else if (scrollTop > lastScrollTop.current + 10) {
+      // Scrolling down → show footer
+      setIsFooterVisible(true);
     }
+
+    lastScrollTop.current = scrollTop;
   };
 
   tableWrapper.addEventListener("scroll", handleScroll);
-
   return () => {
     tableWrapper.removeEventListener("scroll", handleScroll);
   };
-}, [isFooterVisible]);
+}, []);
 
 
   return (
@@ -169,8 +159,7 @@ useEffect(() => {
             </div>
           </>
         )}
-   <Footer isVisible={isFooterVisible} />
-
+        <Footer isVisible={isFooterVisible} />
       </div>
 
       
