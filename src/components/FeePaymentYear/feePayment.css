@@ -396,4 +396,8 @@ input[type="checkbox"] {
   .pagination span {
     gap: 10px;
   }
+
+  .data-table th.firstrow{
+    height: 0px;
+  }
 }

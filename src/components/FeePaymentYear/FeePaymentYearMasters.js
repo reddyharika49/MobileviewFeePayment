@@ -25,7 +25,7 @@ const FeePaymentYearMasters = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isAddNewField, setIsAddNewField] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(true);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 360);
+
   const tableWrapperRef = useRef(null);
   const headerRef = useRef(null);
   const lastScrollTop = useRef(0);
@@ -87,31 +87,69 @@ const FeePaymentYearMasters = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
+// useEffect(() => {
+//   const tableWrapper = tableWrapperRef.current;
+
+//   if (!tableWrapper) return;
+
+//   const handleScroll = () => {
+//     const scrollTop = tableWrapper.scrollTop;
+//     const scrollDelta = scrollTop - lastScrollTop.current;
+
+//     // If at the top (scrollTop <= 0), keep footer hidden
+//     if (scrollTop <= 0) {
+//       setIsFooterVisible(false);
+//     }
+//     // If scrolling down by more than 5px, show footer
+//     else if (scrollDelta => 5) {
+//       setIsFooterVisible(true);
+//     }
+//     // If scrolling up or small downward scroll, hide footer
+//     else if (scrollDelta < 0 || scrollDelta <= 5) {
+//       setIsFooterVisible(false);
+//     }
+
+//     // Update last scroll position
+//     lastScrollTop.current = scrollTop;
+//   };
+
+//   tableWrapper.addEventListener("scroll", handleScroll);
+//   return () => {
+//     tableWrapper.removeEventListener("scroll", handleScroll);
+//   };
+// }, []);
+
 useEffect(() => {
-  const tableWrapper = tableWrapperRef.current;
-  if (!tableWrapper) return;
+    const tableWrapper = tableWrapperRef.current;
+    if (!tableWrapper) return;
 
- lastScrollTop.current = tableWrapper.scrollTop;
+    const handleScroll = () => {
+      const scrollTop = tableWrapper.scrollTop;
+       const scrollHeight = tableWrapper.scrollHeight;
+      const clientHeight = tableWrapper.clientHeight;
 
-  const handleScroll = () => {
-    const scrollTop = tableWrapper.scrollTop;
+      // If at the top, hide footer
+      // 
+      
+       // Footer visibility logic (applies to both desktop and mobile)
+      if (scrollTop > lastScrollTop.current && scrollTop > 10) {
+        setIsFooterVisible(false);
+      } else if (scrollTop < lastScrollTop.current || scrollTop <= 10) {
+        setIsFooterVisible(true);
+      }
+      if (scrollTop + clientHeight >= scrollHeight - 10) {
+        setIsFooterVisible(false);
+      }
 
-    if (scrollTop < lastScrollTop.current - 10) {
-      // Scrolling up → hide footer
-      setIsFooterVisible(false);
-    } else if (scrollTop > lastScrollTop.current + 10) {
-      // Scrolling down → show footer
-      setIsFooterVisible(true);
-    }
+      // Update last scroll position
+      lastScrollTop.current = scrollTop;
+    };
 
-    lastScrollTop.current = scrollTop;
-  };
-
-  tableWrapper.addEventListener("scroll", handleScroll);
-  return () => {
-    tableWrapper.removeEventListener("scroll", handleScroll);
-  };
-}, []);
+    tableWrapper.addEventListener("scroll", handleScroll);
+    return () => {
+      tableWrapper.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
 
   return (
