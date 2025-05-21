@@ -139,16 +139,22 @@
 }
 
 .data-table td {
+   font-family: 'Inter',sans-serif;
   font-weight: 400;
   font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  white-space: nowrap;
   color: #000;
-  border-right-width: 1px;
-  gap: 10px;
-  padding-top: 6px;
-  padding-right: 80px;
-  padding-bottom: 6px;
-  padding-left: 18px;
-  z-index: 1;
+  /* width: 211px;
+height: 38px; */
+ border-right-width: 1px; 
+gap: 10px;
+padding-top: 6px;
+padding-right: 80px;
+padding-bottom: 6px;
+padding-left: 18px;
+z-index: 1;
 }
 
 .data-table th {
@@ -159,6 +165,7 @@
   font-size: 14px;
   color: #0C0C0C;
   padding-top: 25px;
+   border-color: 1px solid #371cbe;
   padding-bottom: 25px;
   padding-left: 18px;
 }
@@ -174,6 +181,9 @@
   padding: 25px 16px;
   background: #F8F8F8;
 }
+.data-table th.firstrow{
+    height: 0px;
+  }
 
 .data-table tr .firstCol {
   position: sticky;
@@ -401,3 +411,4 @@ input[type="checkbox"] {
     height: 0px;
   }
 }
+

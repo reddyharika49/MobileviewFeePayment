@@ -27,6 +27,15 @@ const FeePaymentTable = ({ data }) => {
             <th>FY End On</th>
             <th>Start On</th>
             <th>End On</th>
+            <th>Next_Academic_Id</th>
+            <th>Prev_Academic_Id</th>
+            <th>CreatedOn</th>
+            <th>CreatedBy</th>
+            <th>UpdatedOn</th>
+            <th>UpdatedBy</th>
+            <th>App_Sales</th>
+            <th>Confirmation</th>
+            <th>Concession_Request</th>
             <th></th>
           </tr>
         </thead>
@@ -46,6 +55,15 @@ const FeePaymentTable = ({ data }) => {
               <td>{row.fyEndOn}</td>
               <td>{row.startOn}</td>
               <td>{row.endOn}</td>
+              <td>{row.Next_Academic_Id}</td>
+              <td>{row.Prev_Academic_Id}</td>
+              <td>{row.CreatedOn}</td>
+              <td>{row.CreatedBy}</td>
+              <td>{row.UpdatedOn}</td>
+              <td>{row.UpdatedBy}</td>
+              <td>{row.App_Sales}</td>
+              <td>{row.Confirmation}</td>
+              <td>{row.Concession_Request}</td>
               <td>
                 <div className="actions">
                   <img src={searchicon} alt="search" className="searchicon" />

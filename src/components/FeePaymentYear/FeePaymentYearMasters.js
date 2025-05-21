@@ -5,7 +5,7 @@ import FeePaymentTable from "./feePayment";
 import AddNewFeeField from "./AddFeildForm";
 import Footer from "../Footer/Footer";
 
-const FeePaymentYearMasters = () => {
+const FeePaymentYearMasters = ({setIsFooterVisible}) => {
   const [tableData, setTableData] = useState(
     Array.from({ length: 15 }, (_, i) => ({
       id: i + 1,
@@ -19,13 +19,25 @@ const FeePaymentYearMasters = () => {
       fyEndOn: "Value",
       startOn: "Value",
       endOn: "Value",
+      Next_Academic_Id:"Value",
+     Prev_Academic_Id:"Value",
+      CreatedOn:"Value",
+      CreatedBy:"Value",
+      UpdatedOn:"Value",
+      UpdatedBy:"Value",
+      App_Sales:"Value",
+      Confirmation:"Value",
+      Concession_Request:"Value",
+      
+
     }))
   );
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isAddNewField, setIsAddNewField] = useState(false);
-  const [isFooterVisible, setIsFooterVisible] = useState(true);
-
+  // const [isFooterVisible, setIsFooterVisible] = useState(true);
+  const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const tableWrapperRef = useRef(null);
   const headerRef = useRef(null);
   const lastScrollTop = useRef(0);
@@ -41,6 +53,16 @@ const FeePaymentYearMasters = () => {
     fyEndOn: "",
     startOn: "",
     endOn: "",
+    Next_Academic_Id: "",
+    Prev_Academic_Id: "",
+    CreatedOn: "",
+    CreatedBy: "",
+    UpdatedOn: "",
+    UpdatedBy: "",
+    App_Sales: "",
+     Confirmation: "",
+      Concession_Request: "",
+
   });
 
   const rowsPerPage = 15;
@@ -62,6 +84,16 @@ const FeePaymentYearMasters = () => {
       fyEndOn: "",
       startOn: "",
       endOn: "",
+      Next_Academic_Id: "",
+    Prev_Academic_Id: "",
+    CreatedOn: "",
+    CreatedBy: "",
+    UpdatedOn: "",
+    UpdatedBy: "",
+    App_Sales: "",
+     Confirmation: "",
+      Concession_Request: "",
+
     });
   };
 
@@ -118,6 +150,20 @@ const FeePaymentYearMasters = () => {
 //     tableWrapper.removeEventListener("scroll", handleScroll);
 //   };
 // }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsHeaderScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
 useEffect(() => {
     const tableWrapper = tableWrapperRef.current;
@@ -128,8 +174,8 @@ useEffect(() => {
        const scrollHeight = tableWrapper.scrollHeight;
       const clientHeight = tableWrapper.clientHeight;
 
-      // If at the top, hide footer
-      // 
+    // // Header scroll effect
+    //   setIsHeaderScrolled(scrollTop > 30);
       
        // Footer visibility logic (applies to both desktop and mobile)
       if (scrollTop > lastScrollTop.current && scrollTop > 10) {
@@ -159,6 +205,7 @@ useEffect(() => {
           <FeePaymentHeader
             isAddNewField={isAddNewField}
             onAddNewField={handleAddNewField}
+            isScrolled={isHeaderScrolled}
           />
         </div>
 
@@ -168,9 +215,10 @@ useEffect(() => {
             onChange={handleChange}
             onSave={handleSave}
           />
+          
         ) : (
           <>
-            <FeePaymentTable data={currentRows} />
+            <FeePaymentTable data={currentRows}  />
             <div className="footer-section">
               <p className="pro-tip">
                 ProTip! Check twice before editing the masters data
@@ -197,10 +245,10 @@ useEffect(() => {
             </div>
           </>
         )}
-        <Footer isVisible={isFooterVisible} />
+       
       </div>
 
-      
+       {/* <Footer isVisible={isFooterVisible} /> */}
     </>
   );
 };

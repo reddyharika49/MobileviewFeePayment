@@ -16,6 +16,15 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <th>FY End On</th>
             <th>Start On</th>
             <th>End On</th>
+            <th>Next_Academic_Id</th>
+            <th>Prev_Academic_Id</th>
+            <th>CreatedOn</th>
+            <th>CreatedBy</th>
+            <th>UpdatedOn</th>
+            <th>UpdatedBy</th>
+            <th>App_Sales</th>
+            <th>Confirmation</th>
+            <th>Concession_Request</th>
             <th style={{ borderTopRightRadius: "10px" }}></th>
           </tr>
         </thead>
@@ -126,6 +135,106 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
                 onChange={onChange}
                 className="textfeild"
                 placeholder="Add Value"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="Next_Academic_Id"
+                value={newRow.Next_Academic_Id}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="Prev_Academic_Id"
+                value={newRow.Prev_Academic_Id}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="CreatedOn"
+                value={newRow.CreatedOn}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+              </td>
+              <td>
+              <input
+                type="text"
+                name="CreatedBy"
+                value={newRow.CreatedBy}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="UpdatedOn"
+                value={newRow.UpdatedOn}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="UpdatedBy"
+                value={newRow.UpdatedBy}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="App_Sales"
+                value={newRow.App_Sales}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="Confirmation"
+                value={newRow.Confirmation}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+          
+            <td>
+              <input
+                type="text"
+                name="Concession_Request"
+                value={newRow.Concession_Request}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
               />
             </td>
             <td style={{ borderBottomRightRadius: "10px" }}>

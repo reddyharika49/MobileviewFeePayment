@@ -3,23 +3,23 @@ import filter from "../../assets/Filter.png";
 import arrowUp from "../../assets/Arrow up.png";
 import plus from "../../assets/plus.png";
 
-const FeePaymentHeader = ({ isAddNewField, onAddNewField }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+const FeePaymentHeader = ({ isAddNewField, onAddNewField,isScrolled }) => {
+  // const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setIsScrolled(window.scrollY > 30);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    // Initial check
-    handleScroll();
+  //   // Initial check
+  //   handleScroll();
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <div className={`header-section ${isScrolled ? "scrolled" : ""}`}>

@@ -6,7 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Student from "./components/StudentMasters/Students";
 import FeePaymentYear from "./components/FeePaymentYear/FeePaymentYearMasters";
 import Footer from "./components/Footer/Footer";
+import { useState } from "react";
 function App() {
+  const[isFooterVisible,setIsFooterVisible]=useState(true);
   return (
     <BrowserRouter>
       <div className="layout-container">
@@ -20,12 +22,12 @@ function App() {
           </div>
           <div className="routes">
             <Routes className="routes">
-              <Route path="/students" element={<Student />} />
-              <Route path="/feePayment" element={<><FeePaymentYear /></>} />
+              <Route path="/students" element={<Student/>} />
+              <Route path="/feePayment" element={<><FeePaymentYear setIsFooterVisible={setIsFooterVisible}/></>} />
             </Routes>
           </div>
         </div>
-       
+       <Footer isVisible={isFooterVisible}/>
       </div>
     </BrowserRouter>
   );
