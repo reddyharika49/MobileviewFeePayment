@@ -1,9 +1,24 @@
-import React from "react";
+import React ,{useState,useEffect}from "react";
 import searchicon from "../../assets/Vector.png";
 import view from "../../assets/view.png";
 import edit from "../../assets/lucide_edit.png";
 
-const FeePaymentTable = ({ data }) => {
+const FeePaymentTable = () => {
+  const [feePayment, setFeePayment] = useState([]);
+    useEffect(()=>{
+       const handleData = async()=>{
+        try{
+        const response = await fetch("http://localhost:8080/fee/getUsers");
+        const result = await response.json();
+        setFeePayment(result);
+        console.log(result);
+        }
+        catch(error){
+          console.log(error);
+        }
+       }  
+       handleData();
+    },[])
   return (
     <div className="table-section">
       <table className="data-table">
@@ -15,6 +30,7 @@ const FeePaymentTable = ({ data }) => {
                 borderTopLeftRadius: "10px",
                 backgroundColor: "rgba(246, 248, 249, 1)",
                 position: "sticky",zIndex:"999"
+               
               }}
             ></th>
             <th>Academic ID</th>
@@ -29,10 +45,10 @@ const FeePaymentTable = ({ data }) => {
             <th>End On</th>
             <th>Next_Academic_Id</th>
             <th>Prev_Academic_Id</th>
-            <th>CreatedOn</th>
+            {/* <th>CreatedOn</th>
             <th>CreatedBy</th>
             <th>UpdatedOn</th>
-            <th>UpdatedBy</th>
+            <th>UpdatedBy</th> */}
             <th>App_Sales</th>
             <th>Confirmation</th>
             <th>Concession_Request</th>
@@ -40,30 +56,30 @@ const FeePaymentTable = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((row) => (
+          {feePayment.map((row) => (
             <tr key={row.id}>
               <td className="firstCol">
                 <input type="checkbox" />
               </td>
-              <td className="academicId">{row.academicId}</td>
-              <td>{row.joinYear}</td>
-              <td>{row.academicYear}</td>
-              <td>{row.classId}</td>
-              <td>{row.receiptStatus}</td>
+              <td className="academicId">{row.academic_id}</td>
+              <td>{row.join_year}</td>
+              <td>{row.academic_year}</td>
+              <td>{row.class_id}</td>
+              <td>{row.receipt_status}</td>
               <td>{row.status}</td>
-              <td>{row.fyStartOn}</td>
-              <td>{row.fyEndOn}</td>
-              <td>{row.startOn}</td>
-              <td>{row.endOn}</td>
-              <td>{row.Next_Academic_Id}</td>
-              <td>{row.Prev_Academic_Id}</td>
-              <td>{row.CreatedOn}</td>
+              <td>{row.fy_start_on}</td>
+              <td>{row.fy_end_on}</td>
+              <td>{row.start_on}</td>
+              <td>{row.end_on}</td>
+              <td>{row.next_academic_id}</td>
+              <td>{row.prev_academic_id}</td>
+              {/* <td>{row.CreatedOn}</td>
               <td>{row.CreatedBy}</td>
               <td>{row.UpdatedOn}</td>
-              <td>{row.UpdatedBy}</td>
-              <td>{row.App_Sales}</td>
-              <td>{row.Confirmation}</td>
-              <td>{row.Concession_Request}</td>
+              <td>{row.UpdatedBy}</td> */}
+              <td>{row.app_sales}</td>
+              <td>{row.confirmation}</td>
+              <td>{row.concession_request}</td>
               <td>
                 <div className="actions">
                   <img src={searchicon} alt="search" className="searchicon" />

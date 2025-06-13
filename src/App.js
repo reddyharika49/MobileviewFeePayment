@@ -12,12 +12,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="layout-container">
-        <div class="navbar">
+        <div className="navbar">
           <Navbar />
         </div>
 
         <div className="app-container">
-          <div class="sidebar">
+          <div className="sidebar">
             <SideBar></SideBar>
           </div>
           <div className="routes">

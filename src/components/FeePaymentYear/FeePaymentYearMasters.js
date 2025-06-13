@@ -3,7 +3,7 @@ import "./feePayment.css";
 import FeePaymentHeader from "./Header";
 import FeePaymentTable from "./feePayment";
 import AddNewFeeField from "./AddFeildForm";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 
 const FeePaymentYearMasters = ({setIsFooterVisible}) => {
   const [tableData, setTableData] = useState(
@@ -20,11 +20,11 @@ const FeePaymentYearMasters = ({setIsFooterVisible}) => {
       startOn: "Value",
       endOn: "Value",
       Next_Academic_Id:"Value",
-     Prev_Academic_Id:"Value",
-      CreatedOn:"Value",
-      CreatedBy:"Value",
-      UpdatedOn:"Value",
-      UpdatedBy:"Value",
+      Prev_Academic_Id:"Value",
+      // CreatedOn:"Value",
+      // CreatedBy:"Value",
+      // UpdatedOn:"Value",
+      // UpdatedBy:"Value",
       App_Sales:"Value",
       Confirmation:"Value",
       Concession_Request:"Value",
@@ -33,14 +33,19 @@ const FeePaymentYearMasters = ({setIsFooterVisible}) => {
     }))
   );
 
+
+
   const [currentPage, setCurrentPage] = useState(1);
   const [isAddNewField, setIsAddNewField] = useState(false);
   // const [isFooterVisible, setIsFooterVisible] = useState(true);
   const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  // const [isScrolled, setIsScrolled] = useState(false);
   const tableWrapperRef = useRef(null);
   const headerRef = useRef(null);
   const lastScrollTop = useRef(0);
+  const [saveError, setSaveError] = useState(null);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+
 
   const [newRow, setNewRow] = useState({
     academicId: "",
@@ -55,10 +60,10 @@ const FeePaymentYearMasters = ({setIsFooterVisible}) => {
     endOn: "",
     Next_Academic_Id: "",
     Prev_Academic_Id: "",
-    CreatedOn: "",
-    CreatedBy: "",
-    UpdatedOn: "",
-    UpdatedBy: "",
+    // CreatedOn: "",
+    // CreatedBy: "",
+    // UpdatedOn: "",
+    // UpdatedBy: "",
     App_Sales: "",
      Confirmation: "",
       Concession_Request: "",
@@ -86,15 +91,17 @@ const FeePaymentYearMasters = ({setIsFooterVisible}) => {
       endOn: "",
       Next_Academic_Id: "",
     Prev_Academic_Id: "",
-    CreatedOn: "",
-    CreatedBy: "",
-    UpdatedOn: "",
-    UpdatedBy: "",
+    // CreatedOn: "",
+    // CreatedBy: "",
+    // UpdatedOn: "",
+    // UpdatedBy: "",
     App_Sales: "",
      Confirmation: "",
       Concession_Request: "",
 
     });
+    setSaveError(null);
+    setSaveSuccess(false);
   };
 
   const handleChange = (e) => {
@@ -102,13 +109,37 @@ const FeePaymentYearMasters = ({setIsFooterVisible}) => {
     setNewRow((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = () => {
-    const newEntry = {
-      id: tableData.length + 1,
-      ...newRow,
-    };
-    setTableData([newEntry, ...tableData]);
-    setIsAddNewField(false);
+ const handleSave = async (e) => {
+  e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8080/fee/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newRow),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Data saved successfully:", result);
+
+      const newEntry = {
+        id: tableData.length + 1,
+        ...newRow,
+      };
+      setTableData([newEntry, ...tableData]);
+      setIsAddNewField(false);
+      setSaveSuccess(true);
+      setSaveError(null);
+    } catch (error) {
+      console.error("Error saving data:", error);
+      setSaveError(error.message);
+      setSaveSuccess(false);
+    }
   };
 
   const handlePrev = () => {
@@ -210,15 +241,27 @@ useEffect(() => {
         </div>
 
         {isAddNewField ? (
-          <AddNewFeeField
-            newRow={newRow}
-            onChange={handleChange}
-            onSave={handleSave}
-          />
+      <div>
+            <AddNewFeeField
+              newRow={newRow}
+              onChange={handleChange}
+              onSave={handleSave}
+            />
+            {saveSuccess && (
+              <p style={{ color: "green", textAlign: "center" }}>
+                Data saved successfully!
+              </p>
+            )}
+            {saveError && (
+              <p style={{ color: "red", textAlign: "center" }}>
+                Error: {saveError}
+              </p>
+            )}
+          </div>
           
         ) : (
           <>
-            <FeePaymentTable data={currentRows}  />
+            <FeePaymentTable/>
             <div className="footer-section">
               <p className="pro-tip">
                 ProTip! Check twice before editing the masters data

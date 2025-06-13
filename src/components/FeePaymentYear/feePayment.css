@@ -14,7 +14,7 @@
 
 .header-section {
   padding: 1rem;
-  padding-top: 27px;
+  /* padding-top: 27px; */
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #fff;
@@ -116,7 +116,7 @@
   height: 588px;
   border-radius: 10px;
   margin-top: 20px;
-  position: relative;
+  position: sticky;
 }
 
 .data-table {
@@ -398,6 +398,9 @@ input[type="checkbox"] {
     width: 13px;
     height: 13px;
   }
+/* .data-table {
+  margin-top: 70px;
+} */
 
   .footer-section .pro-tip {
     display: none;

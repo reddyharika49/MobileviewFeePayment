@@ -1,6 +1,7 @@
 import React from "react";
-import "./addFeild.css";
+import "./addField.css";
 const AddNewFeeField = ({ newRow, onChange, onSave }) => {
+  
   return (
     <div className="add-table-section">
       <table className="add-table">
@@ -18,10 +19,10 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <th>End On</th>
             <th>Next_Academic_Id</th>
             <th>Prev_Academic_Id</th>
-            <th>CreatedOn</th>
+            {/* <th>CreatedOn</th>
             <th>CreatedBy</th>
             <th>UpdatedOn</th>
-            <th>UpdatedBy</th>
+            <th>UpdatedBy</th> */}
             <th>App_Sales</th>
             <th>Confirmation</th>
             <th>Concession_Request</th>
@@ -33,10 +34,10 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <td style={{ borderBottomLeftRadius: "10px" }}>
               <input
                 type="text"
-                name="academicId"
-                value={newRow.academicId}
+                name="academic_id"
+                value={newRow.academic_id}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -44,10 +45,10 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <td>
               <input
                 type="text"
-                name="joinYear"
-                value={newRow.joinYear}
+                name="join_year"
+                value={newRow.join_year}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -55,10 +56,10 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <td>
               <input
                 type="text"
-                name="academicYear"
-                value={newRow.academicYear}
+                name="academic_year"
+                value={newRow.academic_year}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -66,10 +67,10 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <td>
               <input
                 type="text"
-                name="classId"
-                value={newRow.classId}
+                name="class_id"
+                value={newRow.class_id}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -77,10 +78,10 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <td>
               <input
                 type="text"
-                name="receiptStatus"
-                value={newRow.receiptStatus}
+                name="receipt_status"
+                value={newRow.receipt_status}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -91,6 +92,58 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
                 name="status"
                 value={newRow.status}
                 onChange={onChange}
+                className="textfield"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="fy_start_on"
+                value={newRow.fy_start_on}
+                onChange={onChange}
+                className="textfield"
+                placeholder="Add Value"
+                // style={{ color: "#0C0C0C" }}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="fy_end_on"
+                value={newRow.fy_end_on}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="start_on"
+                value={newRow.start_on}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="end_on"
+                value={newRow.end_on}
+                onChange={onChange}
+                className="textfeild"
+                placeholder="Add Value"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="next_academic_id"
+                value={newRow.next_academic_id}
+                onChange={onChange}
                 className="textfeild"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
@@ -99,73 +152,21 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <td>
               <input
                 type="text"
-                name="fyStartOn"
-                value={newRow.fyStartOn}
+                name="prev_academic_id"
+                value={newRow.prev_academic_id}
                 onChange={onChange}
                 className="textfeild"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
             </td>
-            <td>
-              <input
-                type="text"
-                name="fyEndOn"
-                value={newRow.fyEndOn}
-                onChange={onChange}
-                className="textfeild"
-                placeholder="Add Value"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                name="startOn"
-                value={newRow.startOn}
-                onChange={onChange}
-                className="textfeild"
-                placeholder="Add Value"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                name="endOn"
-                value={newRow.endOn}
-                onChange={onChange}
-                className="textfeild"
-                placeholder="Add Value"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                name="Next_Academic_Id"
-                value={newRow.Next_Academic_Id}
-                onChange={onChange}
-                className="textfeild"
-                placeholder="Add Value"
-                // style={{ color: "#0C0C0C" }}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                name="Prev_Academic_Id"
-                value={newRow.Prev_Academic_Id}
-                onChange={onChange}
-                className="textfeild"
-                placeholder="Add Value"
-                // style={{ color: "#0C0C0C" }}
-              />
-            </td>
-            <td>
+            {/* <td>
               <input
                 type="text"
                 name="CreatedOn"
                 value={newRow.CreatedOn}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -176,7 +177,7 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
                 name="CreatedBy"
                 value={newRow.CreatedBy}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -202,14 +203,14 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
-            </td>
+            </td> */}
             <td>
               <input
                 type="text"
-                name="App_Sales"
-                value={newRow.App_Sales}
+                name="app_sales"
+                value={newRow.app_sales}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -217,10 +218,10 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <td>
               <input
                 type="text"
-                name="Confirmation"
-                value={newRow.Confirmation}
+                name="confirmation"
+                value={newRow.confirmation}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
@@ -229,10 +230,10 @@ const AddNewFeeField = ({ newRow, onChange, onSave }) => {
             <td>
               <input
                 type="text"
-                name="Concession_Request"
-                value={newRow.Concession_Request}
+                name="concession_request"
+                value={newRow.concession_request}
                 onChange={onChange}
-                className="textfeild"
+                className="textfield"
                 placeholder="Add Value"
                 // style={{ color: "#0C0C0C" }}
               />
